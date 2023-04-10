@@ -1,9 +1,10 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import Fields from '../components/Fields'
 
 
-const AddFriend = () => {
+const AddFriend = () => {    
+
   return (
     <SafeAreaView>
         <View style={styles.container}>
@@ -17,13 +18,13 @@ const AddFriend = () => {
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        marginTop: 20
+        marginTop: 50
     },
     heading: {
         alignItems: "center",
         fontSize: 40,
-        fontWeight: 600,
-    },
+        fontWeight: 600,        
+    },    
 })
 
 export default AddFriend

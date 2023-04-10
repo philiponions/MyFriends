@@ -20,7 +20,8 @@ export default function Main({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',        
+    backgroundColor: '#fff',   
+    marginTop: 30     
   },
   title: {
     fontSize: 50,
