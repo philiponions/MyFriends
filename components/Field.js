@@ -5,37 +5,37 @@ import { useState } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import PickDate from './PickDate';
 
-const renderFieldType = (fieldType, name, numLines) => {
-    const [datePickerOn, setDatePicker] = useState(false)
 
-    const turnDatePickerOn = () =>{
-        setDatePicker(true)
+const Field = ({name, icon, numLines, fieldType, input, setInput}) => {
+    const renderFieldType = () => {
+        const [datePickerOn, setDatePicker] = useState(false)
+    
+        const turnDatePickerOn = () =>{
+            setDatePicker(true)
+        }
+    
+        if (fieldType === "date") {        
+            return <><PickDate style={styles.pickDateButton} date={input} setDate={setInput} datePickerOn={datePickerOn} turnDatePickerOn={turnDatePickerOn}/></>
+        }
+        else {
+            return <TextInput 
+                        onChangeText={(text) => setInput(text)}
+                        placeholder={name} 
+                        style={styles.textInput} 
+                        multiline
+                        numberOfLines={numLines}
+                    />
+        }
     }
-
-
-    if (fieldType === "date") {        
-        return <>
-            <PickDate style={styles.pickDateButton} datePickerOn={datePickerOn} turnDatePickerOn={turnDatePickerOn}/>            
-        </>
-    }
-    else {
-        return <TextInput 
-        placeholder={name} 
-        style={styles.textInput} 
-        multiline
-        numberOfLines={numLines}/>
-    }
-}
-
-const Field = ({name, icon, numLines, fieldType}) => {
-  return (
-    <View style={styles.container}>    
-      <View style={{width: 30}}>
-        {icon}
-      </View>
-      {renderFieldType(fieldType, name)}
-    </View>
-  )
+    
+    return (
+        <View style={styles.container}>    
+        <View style={{width: 30}}>
+            {icon}
+        </View>
+        {renderFieldType(fieldType, name, numLines, setInput)}
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({

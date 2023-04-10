@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginLeft: 20
   },
-  button: {
-    
+  button: {    
     bottom: 100,
     alignSelf: "flex-end"
   }

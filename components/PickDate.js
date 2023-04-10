@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn}) => {
-  const [date, setDate] = useState(new Date());
+const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate}) => {
+//   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [firstClick, setFirstClick] = useState(true)

@@ -12,7 +12,7 @@ const List = () => {
       <ScrollView>
         {/* <Text>Hi</Text> */}      
         {friendList.map((friend) => {
-            return <FriendItem friendName={friend}/>
+            return<FriendItem friendName={friend}/>
         })}
       </ScrollView>
     </View>
