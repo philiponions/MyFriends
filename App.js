@@ -1,18 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import List from './components/List';
-import AddButton from './components/AddButton';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Main from './pages/Main';
+import { NavigationContainer } from '@react-navigation/native';
+import AddFriend from './pages/AddFriend';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>My Friends</Text>
-      <List/>      
-      <AddButton style={styles.button}/>
-    </View>
+  return (    
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Main"
+            component={Main}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="AddFriend"
+            component={AddFriend}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>    
+    </SafeAreaProvider>
   );
 }
 

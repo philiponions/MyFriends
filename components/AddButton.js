@@ -2,10 +2,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons'; 
 
-const AddButton = () => {
-    const goToAddFriend = () => {
-        console.log("going to add friend page")
-    }
+const AddButton = ({goToAddFriend}) => {
+    
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={goToAddFriend}>            
