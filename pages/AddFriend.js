@@ -1,29 +1,29 @@
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
 import React from 'react'
+import Fields from '../components/Fields'
+
 
 const AddFriend = () => {
-  return (    
+  return (
     <SafeAreaView>
-        <View styles={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.heading}>Add a Friend</Text>
         </View>
-    </SafeAreaView>        
+        <Fields style={styles.fields}/>
+    </SafeAreaView>    
   )
 }
 
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
-        flex: 1
-    },
-    innerContainer: {
-        flex: 1
+        marginTop: 20
     },
     heading: {
         alignItems: "center",
-        fontSize: 30,
-        fontWeight: 600
-    }
+        fontSize: 40,
+        fontWeight: 600,
+    },
 })
 
 export default AddFriend
