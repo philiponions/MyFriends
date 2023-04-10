@@ -34,8 +34,8 @@ const AddFriend = ({setFriendList, friendList}) => {
             
             const jsonValue = JSON.stringify([...friendList, value])
             
-            await AsyncStorage.clear();
-            // await AsyncStorage.setItem('friendList', jsonValue)
+            // await AsyncStorage.clear();
+            await AsyncStorage.setItem('friendList', jsonValue)
         } catch (e) {
             console.log(e)
         }

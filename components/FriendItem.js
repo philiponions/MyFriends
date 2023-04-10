@@ -24,10 +24,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginHorizontal: 20,
         alignItems: "center",
-        backgroundColor: "#7A6DA5",
+        backgroundColor: "#ffff",
         marginVertical: 5,
         paddingVertical: 5,
-        borderRadius: 10,
+        borderRadius: 10,        
+        elevation: 5,
     
     },
     imageContainer: {

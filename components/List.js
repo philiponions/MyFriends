@@ -4,8 +4,6 @@ import { useState } from 'react'
 import FriendItem from './FriendItem'
 
 const List = ({friendList}) => {
-    // const [friendList, setFriendList] = useState(["john", "jimmy", "carol", "kate"])
-    
 
   return (
     <View>

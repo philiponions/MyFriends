@@ -14,7 +14,7 @@ export default function App() {
   const [friendList, setFriendList] = useState([])    
 
   const goToAddFriend = () => {
-      navigation.navigate('AddFriend')        
+      navigation.navigate('AddFriend')      
   }
 
   getData = async () => {
@@ -42,8 +42,7 @@ export default function App() {
             {(props) => <Main friendList={friendList} goToAddFriend={goToAddFriend}/>}
           </Stack.Screen>
           <Stack.Screen
-            name="AddFriend"
-            
+            name="AddFriend"            
             options={{ headerShown: false }}
           >
             {(props) => <AddFriend friendList={friendList} setFriendList={setFriendList}/>}
@@ -54,23 +53,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',        
-  },
-  title: {
-    fontSize: 50,
-    fontWeight: '600',
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 20
-  },
-  button: {
-    
-    bottom: 100,
-    alignSelf: "flex-end"
-  }
-
-
-});
