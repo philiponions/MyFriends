@@ -1,21 +1,51 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Fields from '../components/Fields'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from 'react-native-toast-message'
 
-
-const AddFriend = () => {
+const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAdress] = useState("")
     const [notes, setNotes] = useState("")
     const [birthday, setBirthday] = useState(new Date());    
 
+    const toast = () => {        
+        Toast.show({
+            type: 'success',
+            text1: 'Friend added!'
+          });
+    }
+
+
+    const addFriend = async () => {
+        const value = {
+            name: name,
+            phone: phone,
+            notes: notes,
+            birthday: birthday
+        }
+
+        
+        try {
+            toast()
+            setFriendList([...friendList, value])            
+            
+            const jsonValue = JSON.stringify([...friendList, value])
+            
+            await AsyncStorage.clear();
+            // await AsyncStorage.setItem('friendList', jsonValue)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>        
         <View style={styles.container}>
             <Text style={styles.heading}>Add a Friend</Text>
-        </View>
-        
+        </View>        
             <Fields 
                 style={styles.fields}            
                 name={name} setName={setName}
@@ -26,10 +56,14 @@ const AddFriend = () => {
             />
         
         <View style={styles.bottom}>
-            <TouchableOpacity style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.buttonContainer} onPress={addFriend}>
                 <Text style={{color: "white"}}>Add Friend</Text>
             </TouchableOpacity>        
         </View>
+        <Toast
+        position='top'
+        
+      />
     </SafeAreaView>    
   )
 }
@@ -57,8 +91,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         borderRadius: 10,                
         marginBottom: 20,
-        flexGrow: 1
-       
+        flexGrow: 1       
     },
 })
 

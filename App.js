@@ -5,24 +5,49 @@ import Main from './pages/Main';
 import { NavigationContainer } from '@react-navigation/native';
 import AddFriend from './pages/AddFriend';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [friendList, setFriendList] = useState([])    
+
+  const goToAddFriend = () => {
+      navigation.navigate('AddFriend')        
+  }
+
+  getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('friendList')
+      console.log(jsonValue)
+      setFriendList(jsonValue != null ? JSON.parse(jsonValue) : [])
+    } catch(e) {
+      console.log(e)
+    }    
+    console.log('done')
+  }
+  useEffect(() => {
+    getData()
+  }, [])
+
   return (    
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="Main"
-            component={Main}
+            name="Main"            
             options={{ headerShown: false }}
-          />
+          >
+            {(props) => <Main friendList={friendList} goToAddFriend={goToAddFriend}/>}
+          </Stack.Screen>
           <Stack.Screen
             name="AddFriend"
-            component={AddFriend}
+            
             options={{ headerShown: false }}
-          />
+          >
+            {(props) => <AddFriend friendList={friendList} setFriendList={setFriendList}/>}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>    
     </SafeAreaProvider>

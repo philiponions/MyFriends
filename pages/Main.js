@@ -2,8 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import List from '../components/List';
 import AddButton from '../components/AddButton';
+import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Main({navigation}) {
+export default function Main({friendList}) {    
+    const navigation = useNavigation()
+
     const goToAddFriend = () => {
         navigation.navigate('AddFriend')        
     }
@@ -11,7 +15,9 @@ export default function Main({navigation}) {
   return (
       <View style={styles.container}>
         <Text style={styles.title}>My Friends</Text>
-        <List/>      
+        {
+            friendList.length ? <List friendList={friendList}/> : <Text>you have no friends</Text>
+        }
         <AddButton style={styles.button} goToAddFriend={goToAddFriend}/>
       </View>
   );

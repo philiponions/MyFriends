@@ -3,16 +3,16 @@ import React from 'react'
 import { useState } from 'react'
 import FriendItem from './FriendItem'
 
-const List = () => {
+const List = ({friendList}) => {
     // const [friendList, setFriendList] = useState(["john", "jimmy", "carol", "kate"])
-    const friendList = ["john", "jimmy", "carol", "kate"]
+    
 
   return (
     <View>
       <ScrollView>
         {/* <Text>Hi</Text> */}      
         {friendList.map((friend) => {
-            return<FriendItem friendName={friend}/>
+            return<FriendItem friendName={friend.name}/>
         })}
       </ScrollView>
     </View>
