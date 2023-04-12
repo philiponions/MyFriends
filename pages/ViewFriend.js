@@ -1,18 +1,24 @@
-import { View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Alert} from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Alert, KeyboardAvoidingView} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message'
 import { AntDesign } from '@expo/vector-icons';
 import DetailContainer from '../components/DetailContainer';
+import InfoView from '../components/InfoView';
 
 const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAdress] = useState("")
     const [notes, setNotes] = useState("")
-    const [birthday, setBirthday] = useState(new Date());    
-
+    const [birthday, setBirthday] = useState(new Date());   
+    
+    const [editName, setEditName] = useState(false)
+    const [editPhone, setEditPhone] = useState(false)
+    const [editAddress, setEditAddress] = useState(false)
+    const [editNotes, setEditNotes] = useState(false)
+    
     const toast = () => {        
         Toast.show({
             type: 'success',
@@ -41,74 +47,85 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
         }
     }
   return (
-    <SafeAreaView style={{flex: 1}}>        
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <View style={styles.circle}>
-                    <AntDesign name="user" size={60} color="black"/>
-                </View>
-                <View style={styles.heading}>
+    // <SafeAreaView style={{flex: 1}}>        
+        <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={styles.container}>
+            <View style={styles.inner}>
+                <View style={styles.header}>
+                    <View style={styles.avatar}>
+                        <AntDesign name="user" size={80} color="black"></AntDesign>
+                    </View>
                     <Text style={styles.name}>{selectedFriend.name}</Text>
-                    <TouchableOpacity>
-                        <Button title="Edit Profile"/>
-                    </TouchableOpacity>
                 </View>
-            </View>
-            <View style={styles.info}>                
-                { selectedFriend.phone ? <DetailContainer detail={selectedFriend.phone}/> : null}
-                { selectedFriend.address ? <DetailContainer detail={selectedFriend.address}/>: null}
-                { selectedFriend.notes ? <DetailContainer detail={selectedFriend.notes}/>: null}
-                { selectedFriend.birthday ? <DetailContainer detail={selectedFriend.birthday.split('T')[0]}/> : null}
-            </View>            
-        </View>        
-                    
-    </SafeAreaView>    
+                    <View style={styles.content}>
+                        <InfoView info={selectedFriend.phone} infoType="Phone"></InfoView>
+                        <InfoView info={selectedFriend.address} infoType="Address"></InfoView>
+                        <InfoView info={selectedFriend.birthday.split("T")} infoType="Birthday"></InfoView>               
+                        <InfoView info={selectedFriend.notes} infoType="Notes"></InfoView>                
+                    </View>
+            </View>                            
+        <TouchableOpacity style={styles.saveButton}>
+            <Text style={styles.saveText}>Save</Text>
+        </TouchableOpacity>
+    </KeyboardAvoidingView>
   )
 }
 
 const styles = StyleSheet.create({
-    container: {        
-        marginBottom: 100
-    },
-    header: {        
+    header: {
+        paddingTop: 40,        
         alignItems: "center",
-        marginTop: 50,
-        flexDirection: "row",
+        backgroundColor: "#03cffc"
+    },
+    content: {
         padding: 20
     },
-    detail: {
+    inner: {
+        justifyContent: "flex-end"
+    },
+    infoLabel: {
+        fontSize: 17,
+        fontWeight: 500
+    },
+    container: {
+        flex: 1
+    },
+    saveText: {
+        color: "#ffffff",
         fontSize: 24
+    },  
+    saveButton: {
+        alignItems: "center",
+        backgroundColor: "#34d15e",
+        padding: 10,
+        marginHorizontal: 20,
+        borderRadius: 5
+    },
+    block: {
+        marginBottom: 30,
+        backgroundColor: "#ffffff",
+        elevation: 5,
+        padding: 10,
+        borderRadius: 5,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    avatar: {
+        backgroundColor: "#ffffff",
+        borderRadius: 100,
+        borderWidth: 5,
     },
     name: {
-        fontSize: 40,
-        fontWeight: 600,    
+        fontSize: 24,
+        fontWeight: 500,
+        color: "#ffffff",
+        marginTop: 10
     },
-    info: {
-        marginLeft: 20,
-        marginTop: 100
-    },
-    circle: {
-        borderRadius: 100,
-        backgroundColor: "#ffffff",
-        borderWidth: 3
-    },
-    heading: {
-        marginLeft: 10         
-    },    
-    bottom: {
-        position: 'absolute',
-        bottom:0,
-        flexDirection: "row"
-    },
-    buttonContainer: {
-        backgroundColor: "#59ABCC",
-        alignItems: "center",
-        paddingVertical: 30,
-        marginHorizontal: 10,
-        borderRadius: 10,                
-        marginBottom: 20,
-        flexGrow: 1       
-    },
+    notes: {
+        paddingBottom: 50
+    }
 })
 
 export default ViewFriend
