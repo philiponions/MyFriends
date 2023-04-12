@@ -6,19 +6,25 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import EmptyHeader from '../components/EmptyHeader';
 
-export default function Main({friendList}) {    
+export default function Main({friendList, selectedFriend, setSelectedFriend}) {    
     const navigation = useNavigation()
 
     const goToAddFriend = () => {
-        navigation.navigate('AddFriend')  
-        console.log(friendList)      
+        navigation.navigate('AddFriend')          
+    }
+
+    const goToViewFriend = () => {
+        navigation.navigate('ViewFriend')          
     }
 
   return (
       <View style={styles.container}>
         <Text style={styles.title}>My Friends</Text>
         {
-            friendList.length ? <List friendList={friendList}/> : <EmptyHeader/>
+            friendList.length ? <List friendList={friendList} 
+                                      goToViewFriend={goToViewFriend} 
+                                      selectedFriend={selectedFriend}
+                                      setSelectedFriend={setSelectedFriend}/> : <EmptyHeader/>
         }
         <AddButton style={styles.button} goToAddFriend={goToAddFriend}/>
       </View>

@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Main from './pages/Main';
 import { NavigationContainer } from '@react-navigation/native';
 import AddFriend from './pages/AddFriend';
+import ViewFriend from './pages/ViewFriend';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,6 +13,8 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [friendList, setFriendList] = useState([])    
+  const [selectedFriend, setSelectedFriend] = useState({})
+
 
   const goToAddFriend = () => {
       navigation.navigate('AddFriend')      
@@ -31,6 +34,11 @@ export default function App() {
     getData()
   }, [])
 
+  useEffect(() => {
+    console.log("change")
+    console.log(selectedFriend)
+  }, [])
+
   return (    
     <SafeAreaProvider>
       <NavigationContainer>
@@ -39,13 +47,24 @@ export default function App() {
             name="Main"            
             options={{ headerShown: false }}
           >
-            {(props) => <Main friendList={friendList} goToAddFriend={goToAddFriend}/>}
+            {(props) => <Main friendList={friendList} 
+                              selectedFriend={selectedFriend} 
+                              setSelectedFriend={setSelectedFriend} 
+                              goToAddFriend={goToAddFriend}/>}
           </Stack.Screen>
           <Stack.Screen
             name="AddFriend"            
             options={{ headerShown: false }}
           >
-            {(props) => <AddFriend friendList={friendList} setFriendList={setFriendList}/>}
+            {(props) => <AddFriend friendList={friendList} 
+                                    setFriendList={setFriendList}/>}
+          </Stack.Screen>
+          <Stack.Screen
+            name="ViewFriend"                    
+            options={{ headerShown: false }}
+          >
+             {(props) => <ViewFriend selectedFriend={selectedFriend} 
+                                     setSelectedFriend={setSelectedFriend}/>}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>    

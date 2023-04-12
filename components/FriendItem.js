@@ -2,17 +2,19 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 
-const FriendItem = ({friendName}) => {
-    const printFriend = () => {
-        console.log(friendName)
+const FriendItem = ({friendObj, goToViewFriend, setSelectedFriend}) => {
+    const goToNewPage = () => {
+        goToViewFriend()
+        setSelectedFriend(friendObj)
+        
     }
     return (
-    <TouchableOpacity onPress={printFriend}>
+    <TouchableOpacity onPress={goToNewPage}>
         <View style={styles.container}>        
         <View style={styles.imageContainer}>
             <AntDesign name="user" size={24} color="white"/>
         </View>
-        <Text style={styles.name}>{friendName}</Text>
+        <Text style={styles.name}>{friendObj.name}</Text>
 
         </View>
     </TouchableOpacity>
