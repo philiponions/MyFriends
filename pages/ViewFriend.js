@@ -18,7 +18,7 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
     const toast = () => {        
         Toast.show({
             type: 'success',
-            text1: 'Friend added!'
+            text1: 'Edit saved!'
           });
     }
     
@@ -26,10 +26,11 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
         const value = {
             name: name,
             phone: phone,
+            address: address,
             notes: notes,
-            birthday: birthday
+            birthday: birthday.toISOString()
         }        
-        console.log("payload:", value)
+        // console.log("payload:", value)
         const updatedList = friendList.map((friend) => {
             if (friend.id === id) {
                 return value
@@ -37,19 +38,19 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
             return friend
         })
         console.log(updatedList)
-        // try {
-        //     toast()
-        //     console.log(friendList.findIndex((friend) => friend.id === selectedFriend.id))
+        try {
+            toast()
+            console.log(friendList.findIndex((friend) => friend.id === selectedFriend.id))
 
-        //     setFriendList([...friendList, value])            
+            setFriendList([...friendList, value])            
             
-        //     const jsonValue = JSON.stringify([...friendList, value])
+            const jsonValue = JSON.stringify([...friendList, value])
             
-        //     // await AsyncStorage.clear();
-        //     await AsyncStorage.setItem('friendList', jsonValue)
-        // } catch (e) {
-        //     console.log(e)
-        // }
+            // await AsyncStorage.clear();
+            await AsyncStorage.setItem('friendList', jsonValue)
+        } catch (e) {
+            console.log(e)
+        }
     }
   return (
     // <SafeAreaView style={{flex: 1}}>        

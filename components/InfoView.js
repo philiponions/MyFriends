@@ -1,13 +1,18 @@
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const InfoView = ({infoType, info, setInfo}) => {
   const [toggleEdit, setToggleEdit] = useState(false)  
   const [mode, setMode] = useState('date');
-  const [show, setShow] = useState(false);  
+  const [show, setShow] = useState(false); 
+//   const [text, setText] = useState("") 
 
+  const changeText = (v) => {
+    setInfo(v)
+    // console.log(info)
+  }
   
   const edit = () => {
     setToggleEdit(!toggleEdit)
@@ -36,7 +41,7 @@ const InfoView = ({infoType, info, setInfo}) => {
     setMode(currentMode);    
   };
 
-  const Field = () => {
+  const renderField = () => {
     if (infoType === "Birthday") {
         return <>
             <Text>{info ? info.toISOString().split("T")[0] : "N/A"}</Text>
@@ -53,16 +58,16 @@ const InfoView = ({infoType, info, setInfo}) => {
         </>        
     }
     else {
-        return <TextInput value={info} onChangeText={setInfo} defaultValue={info ? info : "N/A"} style={styles.textInput}/> 
+        return <TextInput value={info} onChangeText={v=> {setInfo(v)}}  style={styles.textInput}/> // why is this not working
     }
-
   }
 
+  // DO NOT RENDER renderField AS A COMPONENT OTHERWISE ONCHANGETEXT WILL BE UNMOUNTED
   return (
         <TouchableOpacity style={styles.block} onPress={edit}>
             <View style={infoType !== "Notes" ? styles.infoContainer: [styles.infoContainer, styles.notes]}>
                 <Text style={styles.infoLabel}>{infoType}</Text>                            
-                <Field/>                
+                {renderField()}         
             </View>                    
                 <AntDesign name="edit" size={24} color="black"/>          
         </TouchableOpacity>
