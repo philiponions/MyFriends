@@ -3,11 +3,12 @@ import React from 'react'
 import { useState } from 'react'
 import FriendItem from './FriendItem'
 
-const List = ({friendList, goToViewFriend, selectedFriend, setSelectedFriend}) => {
+const List = ({createDeleteAlert, friendList, goToViewFriend, selectedFriend, setSelectedFriend}) => {
   return (
         <ScrollView style={{backgroundColor: "#a8a8a8", marginBottom: 50}} contentContainerStyle={{ flexGrow: 1 }}>
           {friendList.map((friend) => {
               return<FriendItem friendObj={friend} 
+                                createDeleteAlert={createDeleteAlert}
                                 goToViewFriend={goToViewFriend}
                                 selectedFriend={selectedFriend}
                                 setSelectedFriend={setSelectedFriend}/>

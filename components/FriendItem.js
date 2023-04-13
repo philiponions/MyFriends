@@ -2,14 +2,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 
-const FriendItem = ({friendObj, goToViewFriend, setSelectedFriend}) => {
+const FriendItem = ({createDeleteAlert, friendObj, goToViewFriend, setSelectedFriend}) => {
     const goToNewPage = () => {
         goToViewFriend()
         setSelectedFriend(friendObj)
         
     }
     return (
-    <TouchableOpacity onPress={goToNewPage}>
+    <TouchableOpacity onPress={goToNewPage} onLongPress={() => createDeleteAlert(friendObj.id)}>
         <View style={styles.container}>        
         <View style={styles.imageContainer}>
             <AntDesign name="user" size={24} color="white"/>

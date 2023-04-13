@@ -48,6 +48,7 @@ export default function App() {
             options={{ headerShown: false }}
           >
             {(props) => <Main friendList={friendList} 
+                              setFriendList={setFriendList}
                               selectedFriend={selectedFriend} 
                               setSelectedFriend={setSelectedFriend} 
                               goToAddFriend={goToAddFriend}/>}
