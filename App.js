@@ -64,7 +64,11 @@ export default function App() {
             options={{ headerShown: false }}
           >
              {(props) => <ViewFriend selectedFriend={selectedFriend} 
-                                     setSelectedFriend={setSelectedFriend}/>}
+                                     setSelectedFriend={setSelectedFriend}
+                                     friendList={friendList}
+                                     setFriendList={setFriendList}
+                                     />}
+                                    
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>    

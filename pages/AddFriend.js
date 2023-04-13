@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message'
+import uuid from 'react-native-uuid';
 
 const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
@@ -21,19 +22,20 @@ const AddFriend = ({setFriendList, friendList}) => {
 
     const addFriend = async () => {
         const value = {
+            id: uuid.v4(),
             name: name,
             phone: phone,
             notes: notes,
-            birthday: birthday
+            birthday: birthday.toISOString()
         }
 
         
         try {
             toast()
+            console.log(value)
             setFriendList([...friendList, value])            
             
             const jsonValue = JSON.stringify([...friendList, value])
-            
             // await AsyncStorage.clear();
             await AsyncStorage.setItem('friendList', jsonValue)
         } catch (e) {
