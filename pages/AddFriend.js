@@ -19,7 +19,6 @@ const AddFriend = ({setFriendList, friendList}) => {
           });
     }
 
-
     const addFriend = async () => {
         const value = {
             id: uuid.v4(),
@@ -32,10 +31,10 @@ const AddFriend = ({setFriendList, friendList}) => {
         
         try {
             toast()
-            console.log(value)
-            setFriendList([...friendList, value])            
+            const newList = [...friendList, value]
+            setFriendList(newList)            
             
-            const jsonValue = JSON.stringify([...friendList, value])
+            const jsonValue = JSON.stringify(newList)
             // await AsyncStorage.clear();
             await AsyncStorage.setItem('friendList', jsonValue)
         } catch (e) {

@@ -5,6 +5,7 @@ import AddButton from '../components/AddButton';
 import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import EmptyHeader from '../components/EmptyHeader';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Main({friendList, setFriendList, selectedFriend, setSelectedFriend}) {    
@@ -18,6 +19,19 @@ export default function Main({friendList, setFriendList, selectedFriend, setSele
         navigation.navigate('ViewFriend')          
     }
 
+    const handleDelete = async (id) => {
+      try {
+          const newList = friendList.filter((item) => item.id !== id)  
+          setFriendList(newList)
+          
+          const jsonValue = JSON.stringify(newList)
+          // await AsyncStorage.clear();
+          await AsyncStorage.setItem('friendList', jsonValue)
+      } catch (e) {
+          console.log(e)
+      }
+    }
+
     const createDeleteAlert = (id) =>
     Alert.alert('Warning', 'Are you sure you want to delete this person?', [
       {
@@ -25,7 +39,7 @@ export default function Main({friendList, setFriendList, selectedFriend, setSele
         onPress: () => console.log("cancel"),
         style: 'cancel',
       },
-      {text: 'OK', onPress: () => setFriendList(friendList.filter((item) => item.id !== id))},
+      {text: 'OK', onPress: () => handleDelete(id)},
     ]);
 
   return (
