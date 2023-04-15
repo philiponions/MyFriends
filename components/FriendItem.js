@@ -6,6 +6,7 @@ const FriendItem = ({createDeleteAlert, friendObj, goToViewFriend, setSelectedFr
     const goToNewPage = () => {
         goToViewFriend()
         setSelectedFriend(friendObj)
+        console.log(friendObj)
         
     }
     return (

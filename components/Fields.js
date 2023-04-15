@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     container: {
         marginHorizontal: 20,
         marginVertical: 10,
-        marginTop: 50
+        marginTop: 20
     }
 })
 

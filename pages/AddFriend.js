@@ -13,7 +13,7 @@ const AddFriend = ({setFriendList, friendList}) => {
     const [phone, setPhone] = useState("")
     const [address, setAdress] = useState("")
     const [notes, setNotes] = useState("")
-    const [birthday, setBirthday] = useState(new Date());    
+    const [birthday, setBirthday] = useState(new Date());        
     const [picture, setPicture] = useState(null)
 
     const toastSuccess = () => {        
@@ -53,7 +53,8 @@ const AddFriend = ({setFriendList, friendList}) => {
             phone: phone,
             address: address,
             notes: notes,
-            birthday: birthday.toISOString()
+            birthday: birthday.toISOString(),
+            picture: picture
         }   
 
         if (name.length > 0) {
@@ -85,7 +86,7 @@ const AddFriend = ({setFriendList, friendList}) => {
 
                 <View style={styles.imageContainer}>
                     <View style={styles.avatar}>
-                        {picture ? <Image source={{ uri: picture }} style={{ width: 90, height: 90 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
+                        {picture ? <Image source={{ uri: picture }} style={{ width: 100, height: 100 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
                     <View>            
                 </View>
                 </View>
@@ -125,7 +126,8 @@ const styles = StyleSheet.create({
         fontWeight: 600,        
     },    
     profileHeader: {
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 20
     },
     bottom: {
         position: 'absolute',
@@ -148,6 +150,7 @@ const styles = StyleSheet.create({
         right: 0,
         position:"absolute",
     },
+    
     profileContainer: {                
         justifyContent: "center",
         alignItems: "center",
