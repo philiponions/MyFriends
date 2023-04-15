@@ -1,9 +1,10 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert} from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert, Image} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message'
 import uuid from 'react-native-uuid';
+import * as ImagePicker from 'expo-image-picker';
 
 const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
@@ -18,6 +19,24 @@ const AddFriend = ({setFriendList, friendList}) => {
             text1: 'Friend added!'
           });
     }
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log("Check this out:");
+        console.log(result.uri);
+    
+        if (!result.canceled) {
+          setImage(result.assets[0].uri);
+        }
+      };
+    
 
     const toastFail = () => {        
         Toast.show({
@@ -60,6 +79,11 @@ const AddFriend = ({setFriendList, friendList}) => {
         <View style={styles.container}>
             <Text style={styles.heading}>Add a Friend</Text>
         </View>        
+            <TouchableOpacity onPress={pickImage}>
+                <View>
+                    <Text>picture</Text>
+                </View>
+            </TouchableOpacity>
             <Fields 
                 style={styles.fields}            
                 name={name} setName={setName}
