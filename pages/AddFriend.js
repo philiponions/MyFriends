@@ -80,16 +80,20 @@ const AddFriend = ({setFriendList, friendList}) => {
         <View style={styles.container}>
             <Text style={styles.heading}>Add a Friend</Text>
         </View>    
-            
-            <View style={styles.imageContainer}>
-                <View style={styles.avatar}>
-                    {picture ? <Image source={{ uri: picture }} style={{ width: 90, height: 90 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
-                <View>            
+        <View style={styles.profileHeader}>
+            <View style={styles.profileContainer}>
+
+                <View style={styles.imageContainer}>
+                    <View style={styles.avatar}>
+                        {picture ? <Image source={{ uri: picture }} style={{ width: 90, height: 90 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
+                    <View>            
+                </View>
+                </View>
+                <TouchableOpacity onPress={pickImage} style={styles.editButton}>                                
+                        <FontAwesome name="pencil" size={20} color="white" />                                
+                </TouchableOpacity>
             </View>
-            </View>
-            <TouchableOpacity onPress={pickImage} style={styles.editButton}>                                
-                    <FontAwesome name="pencil" size={20} color="white" />                                
-            </TouchableOpacity>
+        </View>
             <Fields 
                 style={styles.fields}            
                 name={name} setName={setName}
@@ -120,6 +124,9 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 600,        
     },    
+    profileHeader: {
+        alignItems: "center"
+    },
     bottom: {
         position: 'absolute',
         bottom:0,
@@ -131,17 +138,25 @@ const styles = StyleSheet.create({
     editButton: {
         backgroundColor: "#1ae87a",
         borderRadius: 100,                
-        maxWidth: 30,
-        minHeight: 30, 
+        width: 30,
+        height: 30, 
         borderWidth: 2,   
         borderColor: "#ffff",           
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",   
+        bottom: 0,
+        right: 0,
+        position:"absolute",
+    },
+    profileContainer: {                
+        justifyContent: "center",
+        alignItems: "center",
+        // // width: "auto"
+        maxWidth: 100        
     },
     avatar: {
         backgroundColor: "#ffffff",
-        borderRadius: 100,
-        borderWidth: 5,
+        borderRadius: 100,        
         maxHeight: 100,
         maxWidth: 100,
         minHeight: 100,
