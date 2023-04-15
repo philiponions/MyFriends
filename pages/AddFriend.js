@@ -4,7 +4,9 @@ import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message'
 import uuid from 'react-native-uuid';
+import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import { FontAwesome } from '@expo/vector-icons';
 
 const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
@@ -12,6 +14,7 @@ const AddFriend = ({setFriendList, friendList}) => {
     const [address, setAdress] = useState("")
     const [notes, setNotes] = useState("")
     const [birthday, setBirthday] = useState(new Date());    
+    const [picture, setPicture] = useState(null)
 
     const toastSuccess = () => {        
         Toast.show({
@@ -27,13 +30,11 @@ const AddFriend = ({setFriendList, friendList}) => {
           allowsEditing: true,
           aspect: [4, 3],
           quality: 1,
-        });
+        });            
     
-        console.log("Check this out:");
-        console.log(result.uri);
-    
-        if (!result.canceled) {
-          setImage(result.assets[0].uri);
+        if (!result.canceled) {   
+            // If user did pick an image change picture state         
+          setPicture(result.assets[0].uri);
         }
       };
     
@@ -78,11 +79,16 @@ const AddFriend = ({setFriendList, friendList}) => {
     <SafeAreaView style={{flex: 1}}>        
         <View style={styles.container}>
             <Text style={styles.heading}>Add a Friend</Text>
-        </View>        
-            <TouchableOpacity onPress={pickImage}>
-                <View>
-                    <Text>picture</Text>
-                </View>
+        </View>    
+            
+            <View style={styles.imageContainer}>
+                <View style={styles.avatar}>
+                    {picture ? <Image source={{ uri: picture }} style={{ width: 90, height: 90 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
+                <View>            
+            </View>
+            </View>
+            <TouchableOpacity onPress={pickImage} style={styles.editButton}>                                
+                    <FontAwesome name="pencil" size={20} color="white" />                                
             </TouchableOpacity>
             <Fields 
                 style={styles.fields}            
@@ -118,6 +124,31 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom:0,
         flexDirection: "row"
+    },
+    imageContainer: {
+        alignItems: "center",        
+    },
+    editButton: {
+        backgroundColor: "#1ae87a",
+        borderRadius: 100,                
+        maxWidth: 30,
+        minHeight: 30, 
+        borderWidth: 2,   
+        borderColor: "#ffff",           
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    avatar: {
+        backgroundColor: "#ffffff",
+        borderRadius: 100,
+        borderWidth: 5,
+        maxHeight: 100,
+        maxWidth: 100,
+        minHeight: 100,
+        minWidth: 100,
+        overflow: 'hidden',
+        justifyContent: "center",
+        alignItems: "center"
     },
     buttonContainer: {
         backgroundColor: "#59ABCC",
