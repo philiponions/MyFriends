@@ -42,9 +42,9 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
             toast()
             console.log(friendList.findIndex((friend) => friend.id === selectedFriend.id))
 
-            setFriendList([...friendList, value])            
+            setFriendList(updatedList)            
             
-            const jsonValue = JSON.stringify([...friendList, value])
+            const jsonValue = JSON.stringify(updatedList)
             
             // await AsyncStorage.clear();
             await AsyncStorage.setItem('friendList', jsonValue)
@@ -68,7 +68,7 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
                         <InfoView info={phone} infoType="Phone" setInfo={setPhone}></InfoView>
                         <InfoView info={address} infoType="Address" setInfo={setAdress}></InfoView>
                         <InfoView info={birthday} infoType="Birthday" setInfo={setBirthday}></InfoView>               
-                        <InfoView info={notes} infoType="Notes" setInfo={setNotes}></InfoView>                
+                        <InfoView info={notes} numLines={4} infoType="Notes" setInfo={setNotes}></InfoView>                
                     </View>
             </View>                            
         <TouchableOpacity style={styles.saveButton} onPress={saveFriend}>

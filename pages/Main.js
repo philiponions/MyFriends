@@ -6,10 +6,18 @@ import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import EmptyHeader from '../components/EmptyHeader';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
 
 export default function Main({friendList, setFriendList, selectedFriend, setSelectedFriend}) {    
     const navigation = useNavigation()
+
+    const deleteToast = () => {        
+      Toast.show({
+          type: 'success',
+          text1: 'Friend Deleted'
+        });
+    }
 
     const goToAddFriend = () => {
         navigation.navigate('AddFriend')          
@@ -27,6 +35,7 @@ export default function Main({friendList, setFriendList, selectedFriend, setSele
           const jsonValue = JSON.stringify(newList)
           // await AsyncStorage.clear();
           await AsyncStorage.setItem('friendList', jsonValue)
+          deleteToast()
       } catch (e) {
           console.log(e)
       }
@@ -53,7 +62,7 @@ export default function Main({friendList, setFriendList, selectedFriend, setSele
                                       setSelectedFriend={setSelectedFriend}/> : <EmptyHeader/>
         }
         <AddButton style={styles.button} goToAddFriend={goToAddFriend}/>
-
+        <Toast position='top'/>
       </View>
   );
 }
@@ -65,10 +74,11 @@ const styles = StyleSheet.create({
     marginTop: 30     
   },
   title: {
-    fontSize: 50,
-    fontWeight: '600',
+    fontSize: 30,
+    fontWeight: '40',
     marginTop: 10,
     marginBottom: 10,
-    marginLeft: 20
+    marginLeft: 20,
+    alignSelf: "center"
   },
 });

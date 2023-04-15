@@ -23,6 +23,7 @@ const Field = ({name, icon, numLines, fieldType, input, setInput}) => {
                         placeholder={name} 
                         style={styles.textInput} 
                         multiline
+                        numLines={numLines}
                         numberOfLines={numLines}
                     />
         }
@@ -30,10 +31,8 @@ const Field = ({name, icon, numLines, fieldType, input, setInput}) => {
     
     return (
         <View style={styles.container}>    
-        <View style={{width: 30}}>
-            {icon}
-        </View>
-        {renderFieldType(fieldType, name, numLines, setInput)}
+            <View style={{width: 30}}>{icon}</View>
+            {renderFieldType(fieldType, name, numLines, setInput)}
         </View>
     )
 }
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,    
         flex: 1,
         justifyContent: "center",
-        height: 50
+        minHeight: 50
     },
 })
 

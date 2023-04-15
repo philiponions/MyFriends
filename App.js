@@ -35,7 +35,6 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    console.log("change")
     console.log(selectedFriend)
   }, [])
 

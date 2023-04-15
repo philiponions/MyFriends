@@ -5,7 +5,7 @@ import FriendItem from './FriendItem'
 
 const List = ({createDeleteAlert, friendList, goToViewFriend, selectedFriend, setSelectedFriend}) => {
   return (
-        <ScrollView style={{backgroundColor: "#a8a8a8", marginBottom: 50}} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView style={{backgroundColor: "#ebebeb", height: "80%"}} contentContainerStyle={{ flexGrow: 1 }}>
           {friendList.map((friend) => {
               return<FriendItem friendObj={friend} 
                                 createDeleteAlert={createDeleteAlert}

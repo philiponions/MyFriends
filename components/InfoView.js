@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const InfoView = ({infoType, info, setInfo}) => {
+const InfoView = ({infoType, info, setInfo, numLines}) => {
   const [toggleEdit, setToggleEdit] = useState(false)  
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false); 
@@ -58,7 +58,7 @@ const InfoView = ({infoType, info, setInfo}) => {
         </>        
     }
     else {
-        return <TextInput value={info} onChangeText={v=> {setInfo(v)}}  style={styles.textInput}/> // why is this not working
+        return <TextInput numLines={4} value={info} onChangeText={v=> {setInfo(v)}}  style={styles.textInput}/> // why is this not working
     }
   }
 
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        // maxHeight: 60
+        minHeight: 60
     },
-    notes: {
-        paddingBottom: 50
-    }
+    // notes: {
+    //     paddingBottom: 50
+    // }
 })
 
 export default InfoView

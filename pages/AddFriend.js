@@ -12,10 +12,17 @@ const AddFriend = ({setFriendList, friendList}) => {
     const [notes, setNotes] = useState("")
     const [birthday, setBirthday] = useState(new Date());    
 
-    const toast = () => {        
+    const toastSuccess = () => {        
         Toast.show({
             type: 'success',
             text1: 'Friend added!'
+          });
+    }
+
+    const toastFail = () => {        
+        Toast.show({
+            type: 'error',
+            text1: 'You gotta give a name!'
           });
     }
 
@@ -24,21 +31,27 @@ const AddFriend = ({setFriendList, friendList}) => {
             id: uuid.v4(),
             name: name,
             phone: phone,
+            address: address,
             notes: notes,
             birthday: birthday.toISOString()
-        }
+        }   
 
-        
-        try {
-            toast()
-            const newList = [...friendList, value]
-            setFriendList(newList)            
+        if (name.length > 0) {
             
-            const jsonValue = JSON.stringify(newList)
-            // await AsyncStorage.clear();
-            await AsyncStorage.setItem('friendList', jsonValue)
-        } catch (e) {
-            console.log(e)
+            try {
+                toastSuccess()
+                const newList = [...friendList, value]
+                setFriendList(newList)            
+                
+                const jsonValue = JSON.stringify(newList)
+                // await AsyncStorage.clear();
+                await AsyncStorage.setItem('friendList', jsonValue)
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        else {
+            toastFail()
         }
     }
 
@@ -61,10 +74,7 @@ const AddFriend = ({setFriendList, friendList}) => {
                 <Text style={{color: "white"}}>Add Friend</Text>
             </TouchableOpacity>        
         </View>
-        <Toast
-        position='top'
-        
-      />
+        <Toast position='top'/>
     </SafeAreaView>    
   )
 }
