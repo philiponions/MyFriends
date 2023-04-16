@@ -129,11 +129,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 20
     },
-    bottom: {
-        position: 'absolute',
-        bottom:0,
-        flexDirection: "row"
-    },
+    
     imageContainer: {
         alignItems: "center",        
     },
