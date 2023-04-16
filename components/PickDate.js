@@ -12,7 +12,7 @@ const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate}
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
-    currentDate.setDate(currentDate.getDate() - 1); // Not sure why but date is always one day off.
+    currentDate.setDate(currentDate.getDate()); // Not sure why but date is always one day off.
     setDate(currentDate);
   };
 
