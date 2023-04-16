@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import { NavigationContainer } from '@react-navigation/native';
 import AddFriend from './pages/AddFriend';
 import ViewFriend from './pages/ViewFriend';
+import EditFriend from './pages/EditFriend';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -44,8 +45,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen
             name="Main"            
-            options={{ headerShown: false }}
-          >
+            options={{ headerShown: false }}>
             {(props) => <Main friendList={friendList} 
                               setFriendList={setFriendList}
                               selectedFriend={selectedFriend} 
@@ -54,16 +54,24 @@ export default function App() {
           </Stack.Screen>
           <Stack.Screen
             name="AddFriend"            
-            options={{ headerShown: false }}
-          >
+            options={{ headerShown: false }}>
             {(props) => <AddFriend friendList={friendList} 
                                     setFriendList={setFriendList}/>}
           </Stack.Screen>
           <Stack.Screen
             name="ViewFriend"                    
-            options={{ headerShown: false }}
-          >
+            options={{ headerShown: false }}>
              {(props) => <ViewFriend selectedFriend={selectedFriend} 
+                                     setSelectedFriend={setSelectedFriend}
+                                     friendList={friendList}
+                                     setFriendList={setFriendList}
+                                     />}
+                                    
+          </Stack.Screen>
+          <Stack.Screen
+            name="EditFriend"                    
+            options={{ headerShown: false }}>
+             {(props) => <EditFriend selectedFriend={selectedFriend} 
                                      setSelectedFriend={setSelectedFriend}
                                      friendList={friendList}
                                      setFriendList={setFriendList}

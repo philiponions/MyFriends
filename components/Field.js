@@ -15,7 +15,7 @@ const Field = ({name, icon, numLines, fieldType, input, setInput}) => {
         }
     
         if (fieldType === "date") {        
-            return <><PickDate style={styles.pickDateButton} date={input} setDate={setInput} datePickerOn={datePickerOn} turnDatePickerOn={turnDatePickerOn}/></>
+            return <><PickDate style={styles.pickDateButton} date={input} defaultValue={input} setDate={setInput} datePickerOn={datePickerOn} turnDatePickerOn={turnDatePickerOn}/></>
         }
         else {
             return <TextInput 
@@ -25,6 +25,7 @@ const Field = ({name, icon, numLines, fieldType, input, setInput}) => {
                         multiline
                         numLines={numLines}
                         numberOfLines={numLines}
+                        defaultValue={input}
                     />
         }
     }

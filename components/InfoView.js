@@ -43,22 +43,10 @@ const InfoView = ({infoType, info, setInfo, numLines}) => {
 
   const renderField = () => {
     if (infoType === "Birthday") {
-        return <>
-            <Text>{info ? info.toISOString().split("T")[0] : "N/A"}</Text>
-            {
-                show && (
-                <DateTimePicker
-                testID="dateTimePicker"
-                value={info}
-                mode={mode}
-                is24Hour={true}
-                onChange={onChange}
-                />      )    
-            }
-        </>        
+        return <Text>{info ? info.toISOString().split("T")[0] : "N/A"}</Text>        
     }
     else {
-        return <TextInput numLines={4} value={info} onChangeText={v=> {setInfo(v)}}  style={styles.textInput}/> // why is this not working
+        return <Text>{info}</Text>
     }
   }
 
@@ -66,10 +54,9 @@ const InfoView = ({infoType, info, setInfo, numLines}) => {
   return (
         <TouchableOpacity style={styles.block} onPress={edit}>
             <View style={infoType !== "Notes" ? styles.infoContainer: [styles.infoContainer, styles.notes]}>
-                <Text style={styles.infoLabel}>{infoType}</Text>                            
+                <Text style={styles.infoLabel}>{infoType}</Text>                                            
                 {renderField()}         
-            </View>                    
-                <AntDesign name="edit" size={24} color="black"/>          
+            </View>                                    
         </TouchableOpacity>
   )
 }

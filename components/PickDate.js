@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate}) => {
-//   const [date, setDate] = useState(new Date());
+const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate, edit}) => {
+  // const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [firstClick, setFirstClick] = useState(true)
@@ -33,7 +33,7 @@ const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate}
   return (    
     <TouchableOpacity style={styles.container} onPress={showDatepicker}>
         <View style={styles.container}>
-            <Text>{firstClick ? "Birthday" : date.toISOString().split('T')[0]}</Text>
+            <Text>{date.toISOString().split('T')[0]}</Text>
             <MaterialIcons name="date-range" size={24} color="black" onChange={onChange}/>            
         </View>
         {show && (
@@ -42,9 +42,8 @@ const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate}
           value={date}
           mode={mode}
           is24Hour={true}
-          onChange={onChange}
-        />
-      )}
+          onChange={onChange}/>
+        )}
     </TouchableOpacity>
     
   )
