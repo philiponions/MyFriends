@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert, Image} from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity, Alert, Image, useWindowDimensions} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,6 +7,7 @@ import uuid from 'react-native-uuid';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome } from '@expo/vector-icons';
+import { KeyboardAvoidingView } from 'react-native';
 
 const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
@@ -15,6 +16,7 @@ const AddFriend = ({setFriendList, friendList}) => {
     const [notes, setNotes] = useState("")
     const [birthday, setBirthday] = useState(new Date());        
     const [picture, setPicture] = useState(null)
+    const windowHeight = useWindowDimensions().height;
 
     const toastSuccess = () => {        
         Toast.show({
@@ -77,32 +79,33 @@ const AddFriend = ({setFriendList, friendList}) => {
     }
 
   return (
-    <SafeAreaView style={{flex: 1}}>        
-        <View style={styles.container}>
-            <Text style={styles.heading}>Add a Friend</Text>
-        </View>    
-        <View style={styles.profileHeader}>
-            <View style={styles.profileContainer}>
+    <View style={{minHeight: Math.round(windowHeight)}}>
+            <View style={styles.container}>
+                <Text style={styles.heading}>Add a Friend</Text>
+            </View>    
+            <View style={styles.profileHeader}>
+                <View style={styles.profileContainer}>
 
-                <View style={styles.imageContainer}>
-                    <View style={styles.avatar}>
-                        {picture ? <Image source={{ uri: picture }} style={{ width: 100, height: 100 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
-                    <View>            
+                    <View style={styles.imageContainer}>
+                        <View style={styles.avatar}>
+                            {picture ? <Image source={{ uri: picture }} style={{ width: 100, height: 100 }} /> : <AntDesign name="user" size={90} color="black"></AntDesign>}</View>
+                        <View>            
+                    </View>
+                    </View>
+                    <TouchableOpacity onPress={pickImage} style={styles.editButton}>                                
+                            <FontAwesome name="pencil" size={20} color="white" />                                
+                    </TouchableOpacity>
                 </View>
-                </View>
-                <TouchableOpacity onPress={pickImage} style={styles.editButton}>                                
-                        <FontAwesome name="pencil" size={20} color="white" />                                
-                </TouchableOpacity>
             </View>
-        </View>
-            <Fields 
-                style={styles.fields}            
-                name={name} setName={setName}
-                phone={phone} setPhone={setPhone}
-                address={address} setAdress={setAdress}
-                notes={notes} setNotes={setNotes}
-                birthday={birthday} setBirthday={setBirthday}
-            />
+                <Fields 
+                    style={styles.fields}            
+                    name={name} setName={setName}
+                    phone={phone} setPhone={setPhone}
+                    address={address} setAdress={setAdress}
+                    notes={notes} setNotes={setNotes}
+                    birthday={birthday} setBirthday={setBirthday}
+                />
+        
         
         <View style={styles.bottom}>
             <TouchableOpacity style={styles.buttonContainer} onPress={addFriend}>
@@ -110,7 +113,7 @@ const AddFriend = ({setFriendList, friendList}) => {
             </TouchableOpacity>        
         </View>
         <Toast position='top'/>
-    </SafeAreaView>    
+    </View>
   )
 }
 
@@ -129,7 +132,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 20
     },
-    
+    bottom: {
+        position: "absolute",
+        bottom: 0,
+        flexDirection: "row"
+    },
     imageContainer: {
         alignItems: "center",        
     },

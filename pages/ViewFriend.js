@@ -74,7 +74,7 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
     }
   return (
     // <SafeAreaView style={{flex: 1}}>        
-        <KeyboardAvoidingView
+        <View
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         style={styles.container}>
             <View style={styles.inner}>
@@ -106,7 +106,7 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
             <Text style={styles.saveText}>Save</Text>
         </TouchableOpacity>
         <Toast position='top'/>
-    </KeyboardAvoidingView>
+    </View>
   )
 }
 
