@@ -7,7 +7,7 @@ const AddButton = ({goToAddFriend}) => {
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={goToAddFriend}>            
-            <AntDesign name="plus" size={24} color="black" />
+            <AntDesign name="plus" size={24} color="white" />
         </TouchableOpacity>
     </View>
   )
