@@ -35,6 +35,7 @@ const ViewFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
                 setAddress(newFriendObj.address)
                 setNotes(newFriendObj.notes)
                 setBirthday(new Date(newFriendObj.birthday.split("T")[0]))
+                setPicture(newFriendObj.picture)
                 // setAd(newFriendObj.phone)
                 // console.log(newFriendObj)
             } catch (e) {
