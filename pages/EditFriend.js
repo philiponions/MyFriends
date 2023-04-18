@@ -119,7 +119,7 @@ const EditFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
                     birthday={birthday} setBirthday={setBirthday}/>
         <View style={styles.bottom}>
             <TouchableOpacity style={styles.buttonContainer} onPress={saveFriend}>
-                <Text style={{color: "white"}}>Add Friend</Text>
+                <Text style={{color: "white"}}>Save</Text>
             </TouchableOpacity>        
         </View>
         <Toast position='top'/>
