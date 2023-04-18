@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, Button, TouchableOpacity, Alert, KeyboardAvoidingView} from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Fields from '../components/Fields'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Toast from 'react-native-toast-message'
@@ -10,18 +10,41 @@ import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {    
+const ViewFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, selectedFriend}) => {    
     const [name, setName] = useState(selectedFriend.name)
     const [phone, setPhone] = useState(selectedFriend.phone)
-    const [address, setAdress] = useState(selectedFriend.address)
+    const [address, setAddress] = useState(selectedFriend.address)
     const [notes, setNotes] = useState(selectedFriend.notes)
     const [picture, setPicture] = useState(selectedFriend.picture)
-    const [birthday, setBirthday] = useState(new Date(selectedFriend.birthday.split("T")[0]));   
+    const [birthday, setBirthday] = useState(new Date(selectedFriend.birthday.split("T")[0]));       
+    const friendObj = friendList.find(x => x.id === id)
     const id = selectedFriend.id // We don't need to modify id    
     const navigation = useNavigation()
+    const didMount = useRef(false)
+
+    useEffect(() => {        
+        if (!didMount.current) {
+            console.log("not mount")
+            didMount.current = true
+        }
+        else {
+            try{
+                console.log(friendObj)
+                const newFriendObj = friendList.find(x => x.id === id)
+                setPhone(newFriendObj.phone)
+                setAddress(newFriendObj.address)
+                setNotes(newFriendObj.notes)
+                setBirthday(new Date(newFriendObj.birthday.split("T")[0]))
+                // setAd(newFriendObj.phone)
+                // console.log(newFriendObj)
+            } catch (e) {
+                console.log(e)
+            }
+        }  
+    }, [editTrigger])
 
     const goToEdit = () => {
-        navigation.navigate('EditFriend')
+        navigation.navigate('EditFriend')        
     }
   
   return (
@@ -48,7 +71,7 @@ const ViewFriend = ({setFriendList, friendList, selectedFriend}) => {
                 </View>
                     <View style={styles.content}>
                         <InfoView info={phone} infoType="Phone" setInfo={setPhone}></InfoView>
-                        <InfoView info={address} infoType="Address" setInfo={setAdress}></InfoView>
+                        <InfoView info={address} infoType="Address" setInfo={setAddress}></InfoView>
                         <InfoView info={birthday} infoType="Birthday" setInfo={setBirthday}></InfoView>               
                         <InfoView info={notes} numLines={4} infoType="Notes" setInfo={setNotes}></InfoView>                
                     </View>

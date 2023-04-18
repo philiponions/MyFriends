@@ -9,13 +9,15 @@ import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome } from '@expo/vector-icons';
 import { KeyboardAvoidingView } from 'react-native';
 
-const EditFriend = ({setFriendList, friendList, selectedFriend, setSelectedFriend}) => {
+const EditFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, selectedFriend, setSelectedFriend}) => {
     const [name, setName] = useState(selectedFriend.name)
     const [phone, setPhone] = useState(selectedFriend.phone)
-    const [address, setAdress] = useState(selectedFriend.address)
+    const [address, setAddress] = useState(selectedFriend.address)
     const [notes, setNotes] = useState(selectedFriend.notes)
-    const [birthday, setBirthday] = useState(new Date(selectedFriend.birthday.split("T")[0]));        
     const [picture, setPicture] = useState(selectedFriend.picture)
+    const id = selectedFriend.id
+    const friendVal = friendList.find(x => x.id === id)
+    const [birthday, setBirthday] = useState(new Date(friendVal.birthday.split("T")[0]))       
     const windowHeight = useWindowDimensions().height;
 
     const toastSuccess = () => {        
@@ -64,6 +66,7 @@ const EditFriend = ({setFriendList, friendList, selectedFriend, setSelectedFrien
             notes: notes,
             birthday: birthday.toISOString(),
             picture: picture,
+            id: id
         }        
         // console.log("payload:", value)
         const updatedList = friendList.map((friend) => {
@@ -83,6 +86,10 @@ const EditFriend = ({setFriendList, friendList, selectedFriend, setSelectedFrien
             
             // await AsyncStorage.clear();
             await AsyncStorage.setItem('friendList', jsonValue)
+            
+            setPhone(phone)
+            setAddress(address)
+            setEditTrigger(!editTrigger)
         } catch (e) {
             console.log(e)
         }
@@ -109,13 +116,10 @@ const EditFriend = ({setFriendList, friendList, selectedFriend, setSelectedFrien
                 <Fields 
                     style={styles.fields}            
                     name={name} setName={setName}
-                    phone={phone} setPhone={setPhone}
-                    address={address} setAdress={setAdress}
-                    notes={notes} setNotes={setNotes}
-                    birthday={birthday} setBirthday={setBirthday}
-                />
-        
-        
+                    phone={friendVal.phone} setPhone={setPhone}
+                    address={friendVal.address} setAddress={setAddress}
+                    notes={friendVal.notes} setNotes={setNotes}
+                    birthday={birthday} setBirthday={setBirthday}/>
         <View style={styles.bottom}>
             <TouchableOpacity style={styles.buttonContainer} onPress={saveFriend}>
                 <Text style={{color: "white"}}>Add Friend</Text>

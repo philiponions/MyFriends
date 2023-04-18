@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [friendList, setFriendList] = useState([])    
   const [selectedFriend, setSelectedFriend] = useState({})
-
+  const [editTrigger, setEditTrigger] = useState(false)
 
   const goToAddFriend = () => {
       navigation.navigate('AddFriend')      
@@ -65,6 +65,8 @@ export default function App() {
                                      setSelectedFriend={setSelectedFriend}
                                      friendList={friendList}
                                      setFriendList={setFriendList}
+                                     editTrigger={editTrigger}
+                                     setEditTrigger={setEditTrigger}
                                      />}
                                     
           </Stack.Screen>
@@ -75,6 +77,8 @@ export default function App() {
                                      setSelectedFriend={setSelectedFriend}
                                      friendList={friendList}
                                      setFriendList={setFriendList}
+                                     editTrigger={editTrigger}
+                                     setEditTrigger={setEditTrigger}
                                      />}
                                     
           </Stack.Screen>

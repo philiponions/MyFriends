@@ -13,6 +13,7 @@ const PickDate = ({datePickerOn, setDatePicker, turnDatePickerOn, date, setDate,
     const currentDate = selectedDate;
     setShow(false);
     currentDate.setDate(currentDate.getDate()); // Not sure why but date is always one day off.
+    console.log(currentDate.getDate())
     setDate(currentDate);
   };
 
