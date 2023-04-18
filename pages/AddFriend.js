@@ -12,7 +12,7 @@ import { KeyboardAvoidingView } from 'react-native';
 const AddFriend = ({setFriendList, friendList}) => {
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
-    const [address, setAdress] = useState("")
+    const [address, setAddress] = useState("")
     const [notes, setNotes] = useState("")
     const [birthday, setBirthday] = useState(new Date());        
     const [picture, setPicture] = useState(null)
@@ -101,7 +101,7 @@ const AddFriend = ({setFriendList, friendList}) => {
                     style={styles.fields}            
                     name={name} setName={setName}
                     phone={phone} setPhone={setPhone}
-                    address={address} setAdress={setAdress}
+                    address={address} setAddress={setAddress}
                     notes={notes} setNotes={setNotes}
                     birthday={birthday} setBirthday={setBirthday}
                 />

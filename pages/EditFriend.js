@@ -112,7 +112,7 @@ const EditFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
             </View>
                 <Fields 
                     style={styles.fields}            
-                    name={name} setName={setName}
+                    name={friendVal.name} setName={setName}
                     phone={friendVal.phone} setPhone={setPhone}
                     address={friendVal.address} setAddress={setAddress}
                     notes={friendVal.notes} setNotes={setNotes}

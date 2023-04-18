@@ -29,6 +29,7 @@ const ViewFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
         else {
             try{                
                 const newFriendObj = friendList.find(x => x.id === id)
+                setName(newFriendObj.name)
                 setPhone(newFriendObj.phone)
                 setAddress(newFriendObj.address)
                 setNotes(newFriendObj.notes)
