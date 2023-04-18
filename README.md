@@ -1,11 +1,17 @@
 # MyFriends
 React Native app that lets you add details about your friends like birthday dates, addresses, fun facts, and etc..
+<div> The application will save these details offline, as it uses the AsyncStorage library. </div> 
+
 <div>
   <img width="200" alt="Screenshot 2023-04-17 at 11 26 11 PM" src="https://user-images.githubusercontent.com/78581216/232679202-2fbf478c-d114-4526-a724-aac04f7a1441.png">
-<img width="200" alt="Screenshot 2023-04-17 at 11 28 45 PM" src="https://user-images.githubusercontent.com/78581216/232679611-f8dbe103-fdb4-4707-b7cd-f32289396338.png">
+<img width="215" alt="Screenshot 2023-04-17 at 11 28 45 PM" src="https://user-images.githubusercontent.com/78581216/232679611-f8dbe103-fdb4-4707-b7cd-f32289396338.png">
+<img width="200" alt="Screenshot 2023-04-17 at 11 49 34 PM" src="https://user-images.githubusercontent.com/78581216/232683054-d7597e3b-625e-4e71-aa08-2b18457f1a85.png">
+<img width="200" alt="Screenshot 2023-04-17 at 11 50 56 PM" src="https://user-images.githubusercontent.com/78581216/232683232-4ae40d5e-a5a2-4375-8259-f2ad353e1d49.png">
+
 </div>
 
 ## Why did I make this?
+I thought this was a good introduction for learning React Native. The idea was,
 I tend to forget details like phone numbers and addresses for my friends. So I wanted to build an application that stores this information for you.
 I also wanted it to grab this information in a convenient way, so I also wanted to add a clipboard feature.
 With an idea like this I thought it was small, but challenging enough for me to really learn the process of creating apps with react native.
