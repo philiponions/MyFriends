@@ -1,5 +1,5 @@
 # MyFriends
-React Native app that lets you add details about your friends like birthday dates, addresses, fun facts, and etc..
+A React Native app that lets you add details about your friends like birthday dates, addresses, fun facts, and etc..
 <div> The application will save these details offline, as it uses the AsyncStorage library. </div> 
 
 <div>
@@ -13,8 +13,8 @@ React Native app that lets you add details about your friends like birthday date
 ## Why did I make this?
 I thought this was a good introduction for learning React Native. The idea was,
 I tend to forget details like phone numbers and addresses for my friends. So I wanted to build an application that stores this information for you.
-I also wanted it to grab this information in a convenient way, so I also wanted to add a clipboard feature.
-With an idea like this I thought it was small, but challenging enough for me to really learn the process of creating apps with react native.
+I also wanted it to grab this information in a convenient way, so I wanted to add a clipboard feature.
+With an idea like this I thought the scope would be small, yet provide me with enough challenge to learn a lot of things about React Native.
 I built the whole thing from scratch as I did not watch any tutorials.
 I did read an article on Medium on how to make a basic todo list, but that was pretty much it.
 ## Features I made:
@@ -29,7 +29,7 @@ I did read an article on Medium on how to make a basic todo list, but that was p
 I also made the interface from scratch
 
 ## What I learned:
-Despite such a small project, I surprisingly learnt a lot. Some of the things I learned were:
+Despite such a small project, I surprisingly learned a lot. Some of the things I learned were:
 - State management
 - Hooks such as useState, useEffect, useRef, etc..
 - Styling with Stylesheets
