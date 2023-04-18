@@ -13,8 +13,7 @@ const InfoView = ({infoType, info, setInfo, numLines}) => {
 //   const [text, setText] = useState("") 
 
   const changeText = (v) => {
-    setInfo(v)
-    // console.log(info)
+    setInfo(v)    
   }
   
   const edit = async () => {
@@ -39,8 +38,7 @@ const InfoView = ({infoType, info, setInfo, numLines}) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
-    setInfo(currentDate);
-    console.log("change")
+    setInfo(currentDate);    
   };
 
   const showDatepicker = () => {

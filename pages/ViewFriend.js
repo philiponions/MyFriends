@@ -23,13 +23,11 @@ const ViewFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
     const didMount = useRef(false)
 
     useEffect(() => {        
-        if (!didMount.current) {
-            console.log("not mount")
+        if (!didMount.current) {            
             didMount.current = true
         }
         else {
-            try{
-                console.log(friendObj)
+            try{                
                 const newFriendObj = friendList.find(x => x.id === id)
                 setPhone(newFriendObj.phone)
                 setAddress(newFriendObj.address)

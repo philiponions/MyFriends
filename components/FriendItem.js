@@ -5,8 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 const FriendItem = ({createDeleteAlert, friendObj, goToViewFriend, setSelectedFriend}) => {
     const goToNewPage = () => {
         goToViewFriend()
-        setSelectedFriend(friendObj)
-        console.log(friendObj)
+        setSelectedFriend(friendObj)        
         
     }
     return (
@@ -16,7 +15,6 @@ const FriendItem = ({createDeleteAlert, friendObj, goToViewFriend, setSelectedFr
             {friendObj.picture ? <Image source={{ uri: friendObj.picture }} style={{ width: 60, height: 60 }} /> : <AntDesign name="user" size={60} color="black"></AntDesign>}          
         </View>
         <Text style={styles.name}>{friendObj.name}</Text>
-
         </View>
     </TouchableOpacity>
   )

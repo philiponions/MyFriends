@@ -74,12 +74,9 @@ const EditFriend = ({editTrigger, setEditTrigger, setFriendList, friendList, sel
                 return value
             }
             return friend
-        })
-        console.log(updatedList)
+        })        
         try {
             toast()
-            console.log(friendList.findIndex((friend) => friend.id === selectedFriend.id))
-
             setFriendList(updatedList)            
             
             const jsonValue = JSON.stringify(updatedList)

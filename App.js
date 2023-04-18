@@ -23,21 +23,15 @@ export default function App() {
 
   getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('friendList')
-      console.log(jsonValue)
+      const jsonValue = await AsyncStorage.getItem('friendList')      
       setFriendList(jsonValue != null ? JSON.parse(jsonValue) : [])
     } catch(e) {
       console.log(e)
-    }    
-    console.log('done')
+    }        
   }
   useEffect(() => {
     getData()
-  }, [])
-
-  useEffect(() => {
-    console.log(selectedFriend)
-  }, [])
+  }, [])  
 
   return (    
     <SafeAreaProvider>
